@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/artsko.art/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/artsko.art/static/js/main.0d69e7f1.chunk.js",
+    "main.js.map": "/artsko.art/static/js/main.0d69e7f1.chunk.js.map",
+    "runtime-main.js": "/artsko.art/static/js/runtime-main.406e2fc0.js",
+    "runtime-main.js.map": "/artsko.art/static/js/runtime-main.406e2fc0.js.map",
+    "static/js/2.fa2acf1b.chunk.js": "/artsko.art/static/js/2.fa2acf1b.chunk.js",
+    "static/js/2.fa2acf1b.chunk.js.map": "/artsko.art/static/js/2.fa2acf1b.chunk.js.map",
+    "static/js/3.6d4a8cfc.chunk.js": "/artsko.art/static/js/3.6d4a8cfc.chunk.js",
+    "static/js/3.6d4a8cfc.chunk.js.map": "/artsko.art/static/js/3.6d4a8cfc.chunk.js.map",
+    "index.html": "/artsko.art/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/artsko.art/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.fa2acf1b.chunk.js.LICENSE.txt": "/artsko.art/static/js/2.fa2acf1b.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/artsko.art/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.406e2fc0.js",
+    "static/js/2.fa2acf1b.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.0d69e7f1.chunk.js"
+  ]
+}
