@@ -10,7 +10,6 @@ import {Header} from './components/header';
 import { Navigation } from "./components/navigation";
 import "./App.css";
 import { Features } from "./components/features";
-import { About } from "./components/about";
 import { Services } from "./components/services";
 import { Gallery } from "./components/gallery";
 import { Testimonials } from "./components/testimonials";
@@ -19,7 +18,11 @@ import { Contact } from "./components/contact";
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import { useState, useEffect } from "react";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faImages,faPeopleArrows,faComments, faScroll, faMoneyBillWave, faUserShield } from '@fortawesome/free-solid-svg-icons'
+import { faCcStripe,faTwitter } from '@fortawesome/free-brands-svg-icons'
 
+library.add(faImages,faPeopleArrows,faComments, faScroll,faMoneyBillWave,faUserShield,faCcStripe,faTwitter)
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
 //
@@ -84,11 +87,10 @@ function Home() {
     <div>
       <Header data={landingPageData.Header} />
       <Features data={landingPageData.Features} />
-      <About data={landingPageData.About} />
+      <Team data={landingPageData.Team} />
       <Services data={landingPageData.Services} />
       <Gallery data={landingPageData.Gallery}/>
       <Testimonials data={landingPageData.Testimonials} />
-      <Team data={landingPageData.Team} />
       <Contact data={landingPageData.Contact} />
     </div>
   );

@@ -208,8 +208,7 @@ a:focus,
   display: table;
   width: 100%;
   padding: 0;
-  background: url(../img/intro-bg.jpg) center center no-repeat;
-  background-color: #e5e5e5;
+  background-color: #cccccc;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -248,7 +247,21 @@ header .intro-text {
 #features {
   background: #f6f6f6;
 }
-#features i.fa {
+
+svg[data-prefix] {
+  font-size: 38px;
+  margin-bottom: 20px;
+  transition: all 0.5s;
+  color: #fff;
+  width: 100px !important;
+  height: 100px;
+  padding: 30px 0;
+  border-radius: 50%;
+  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
+}
+
+#FontAwesomeIcon {
   font-size: 38px;
   margin-bottom: 20px;
   transition: all 0.5s;
