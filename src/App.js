@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import Commissions from "./pages/commissions";
+import Privacy from "./pages/privacy";
 import {Header} from './components/header';
 import { Navigation } from "./components/navigation";
 import "./App.css";
@@ -31,6 +32,8 @@ library.add(faImages,faPeopleArrows,faComments, faScroll,faMoneyBillWave,faUserS
 // through the site. This preserves the browser history,
 // making sure things like the back button and bookmarks
 // work properly.
+
+//need background image
 
 export default function BasicExample() {
   const bgColor = new URLSearchParams(window.location.search).get("theme") === 'light' ? '#ffffff' : '#111111';
@@ -62,6 +65,9 @@ export default function BasicExample() {
           </Route>
           <Route path="/commissions">
             <Commissions />
+          </Route>
+          <Route path="/privacy">
+            <Privacy />
           </Route>
         </Switch>
       </div>

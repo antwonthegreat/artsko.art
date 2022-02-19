@@ -1,6 +1,7 @@
 import api from '../api/api';
 import { useState, useEffect, useMemo } from "react";
 import LoadingIcons from 'react-loading-icons'
+import { Footer } from '../components/footer'
 
 const themes = {
   'dark': {
@@ -55,7 +56,7 @@ function Commissions() {
           return;
         }
         const response = await api.get(
-          `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url),Options($select=CurrentPrice;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
+          `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url;$top=1),Options($select=CurrentPrice;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
         );
         const commission = response?.data?.value?.[0];
         setCommission(commission);  
@@ -69,6 +70,7 @@ function Commissions() {
     });
 
    return (
+     <div>
       <div style={{padding:16,marginTop:80, display:'flex',flexDirection:'column'}}>
         {  !commission
           ? <LoadingIcons.Oval style={{alignSelf:'center'}} stroke={theme.accentColor} />:
@@ -148,6 +150,9 @@ function Commissions() {
             </div>
 
         </div>)}
+        
+        </div>
+        <Footer/>
       </div>
     );
   }
