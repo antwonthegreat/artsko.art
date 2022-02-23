@@ -327,7 +327,6 @@ svg[data-prefix] {
   height: 4px;
   width: 60px;
   bottom: 0;
-  left: 0;
 }
 #about .about-text li {
   margin-bottom: 6px;
@@ -528,7 +527,7 @@ svg[data-prefix] {
 #contact .section-title p {
   font-size: 16px;
 }
-#contact h2 {
+#contact h4 {
   color: #fff;
   margin-top: 10px;
   margin-bottom: 15px;

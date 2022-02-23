@@ -42,6 +42,7 @@ function Commissions() {
 
 
     const [commission, setCommission] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     
 
       const theme = useMemo(()=>{
@@ -59,7 +60,8 @@ function Commissions() {
           `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url;$top=1),Options($select=CurrentPrice;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
         );
         const commission = response?.data?.value?.[0];
-        setCommission(commission);  
+        setCommission(commission);
+        setIsLoading(false);
       };
       f();
     }, []);
@@ -72,8 +74,14 @@ function Commissions() {
    return (
      <div>
       <div style={{padding:16,marginTop:80, display:'flex',flexDirection:'column'}}>
-        {  !commission
-          ? <LoadingIcons.Oval style={{alignSelf:'center'}} stroke={theme.accentColor} />:
+        {  
+          isLoading ? 
+            <LoadingIcons.Oval style={{alignSelf:'center'}} stroke={theme.accentColor} />
+          :
+          !commission
+          ? <div style={{minHeight:100, display:'flex',alignItems:'center',justifyContent:'center'}}>
+            Sorry We couldn't find that commission
+          </div>:
           (<div style={{display:'flex',flexDirection:'column'}}>
             
             <div
