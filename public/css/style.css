@@ -497,8 +497,12 @@ svg[data-prefix] {
 #team {
   padding: 100px 0;
 }
-#team h4 {
+#about h4 {
   margin: 5px 0;
+  color: #777;
+}
+#about p {
+  color: #777;
 }
 #team .team-img {
   width: 240px;
