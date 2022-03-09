@@ -122,8 +122,8 @@ function Commissions() {
         </div>
         {
           commission?.CommissionImages[0] ? 
-        <div style={{display:'flex',justifyContent:'center', width:'100%'}}>
-          <img style={{objectFit:'cover',maxWidth:commission?.CommissionImages[0]?.Width}} width='100%'  alt={commission?.Name} src={commission?.CommissionImages?.[0]?.Url}/>
+        <div>
+          <img style={{objectFit:'contain',maxWidth:commission?.CommissionImages[0]?.Width}} width='100%'  alt={commission?.Name} src={commission?.CommissionImages?.[0]?.Url}/>
         </div>
         : null
         }
