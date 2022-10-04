@@ -2,6 +2,8 @@ import api from '../api/api';
 import { useState, useEffect, useMemo } from "react";
 import LoadingIcons from 'react-loading-icons'
 import { Footer } from '../components/footer'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const themes = {
   'dark': {
@@ -42,11 +44,11 @@ function Commissions() {
 
 
     const [commission, setCommission] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     
 
       const theme = useMemo(()=>{
-        const urlTheme = themes[new URLSearchParams(window.location.search).get("theme")];
-        return urlTheme ?? themes['dark'];
+        return themes['dark'];
       },[])
 
     useEffect(() => {
@@ -56,10 +58,11 @@ function Commissions() {
           return;
         }
         const response = await api.get(
-          `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url;$top=1),Options($select=CurrentPrice;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
+          `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url,IsMain),Options($select=CurrentPrice;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
         );
         const commission = response?.data?.value?.[0];
-        setCommission(commission);  
+        setCommission(commission);
+        setIsLoading(false);
       };
       f();
     }, []);
@@ -70,10 +73,16 @@ function Commissions() {
     });
 
    return (
-     <div>
-      <div style={{padding:16,marginTop:80, display:'flex',flexDirection:'column'}}>
-        {  !commission
-          ? <LoadingIcons.Oval style={{alignSelf:'center'}} stroke={theme.accentColor} />:
+     <div style={{display:'flex',flexDirection:'column'}}>
+      <div style={{marginTop:80, display:'flex',flexDirection:'column', alignSelf:'center',maxWidth:800}}>
+        {  
+          isLoading ? 
+            <LoadingIcons.Oval style={{alignSelf:'center'}} stroke={theme.accentColor} />
+          :
+          !commission
+          ? <div style={{minHeight:100, display:'flex',alignItems:'center',justifyContent:'center'}}>
+            Sorry We couldn't find that commission
+          </div>:
           (<div style={{display:'flex',flexDirection:'column'}}>
             
             <div
@@ -112,15 +121,19 @@ function Commissions() {
             </div>
           </div>
         </div>
+        <Carousel
+          autoPlay
+          showThumbs={false}
+        >
         {
-          commission?.CommissionImages[0] ? 
-        <div style={{display:'flex',justifyContent:'center', width:'100%'}}>
-          <img style={{objectFit:'cover',maxWidth:commission?.CommissionImages[0]?.Width}} width='100%'  alt={commission?.Name} src={commission?.CommissionImages?.[0]?.Url}/>
-        </div>
-        : null
-        }
+          (commission?.CommissionImages ?? []).map(image => 
+              <img style={{objectFit:'contain',maxWidth:image.Width}} width='100%'  alt={commission?.Name} src={image.Url}/>
+          )        
+        }        
+        </Carousel>
+
         {commission?.Description ? (
-          <div style={{display:'flex',justifyContent:'center'}}>
+          <div style={{display:'flex',justifyContent:'center',padding:16}}>
               <div style={{ padding: 8,...theme.caption }}>{commission.Description}</div>
           </div>
         ) : null}
@@ -143,7 +156,8 @@ function Commissions() {
 
           </div>
         ) : null}
-          <div style={{display:'flex', justifyContent:'center', ...theme.title}}>To purchase, download the Artsko app:</div>
+
+          <div style={{display:'flex',padding:16, justifyContent:'center', ...theme.title}}>To purchase, download the Artsko app:</div>
           <div style={{display:'flex', justifyContent:'center'}}>
               <img style={{margin:8}} alt="ios app store" src="/img/ios_app_store.svg"/>
               <img style={{margin:8}} height="58" alt="android app store" src="/img/android_app_store.png"/>

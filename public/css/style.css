@@ -7,6 +7,11 @@ html {
   font-weight: 400;
   width: 100% !important;
   height: 100% !important;
+  --main-accent-color: #dc8888;
+  --secondary-accent-color: #cc5151;
+  --main-accent-color-eighty: rgba(204, 81, 81, 0.8);
+  --secondary-accent-color-eighty: rgba(220, 136, 136, 0.8);
+  --link-color: #dc8888;
 }
 h2,
 h3,
@@ -43,13 +48,13 @@ p.intro {
   line-height: 24px;
 }
 a {
-  color: #608dfd;
+  color: var(--link-color);
   font-weight: 400;
 }
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #608dfd;
+  color: var(--link-color);
 }
 ul,
 ol {
@@ -104,7 +109,11 @@ hr {
   bottom: -1px;
   width: 0;
   height: 2px;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  );
   content: "";
   transition: width 0.2s;
 }
@@ -125,7 +134,11 @@ hr {
   bottom: -1px !important;
   width: 100% !important;
   height: 2px !important;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%) !important;
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  ) !important;
   content: "" !important;
   transition: width 0.2s !important;
 }
@@ -135,10 +148,10 @@ hr {
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
   background-color: #fff;
-  border-color: #608dfd;
+  border-color: var(--link-color);
 }
 .navbar-default .navbar-toggle:hover > .icon-bar {
-  background-color: #608dfd;
+  background-color: var(--link-color);
 }
 .section-title {
   margin-bottom: 70px;
@@ -152,7 +165,11 @@ hr {
 .section-title h2::after {
   position: absolute;
   content: "";
-  background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+  background: linear-gradient(
+    to right,
+    var(--secondary-accent-color) 0%,
+    var(--main-accent-color) 100%
+  );
   height: 4px;
   width: 60px;
   bottom: 0;
@@ -166,8 +183,12 @@ hr {
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   color: #fff;
-  background-color: #5ca9fb;
-  background-image: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+  background-color: var(--secondary-accent-color);
+  background-image: linear-gradient(
+    to right,
+    var(--secondary-accent-color) 0%,
+    var(--main-accent-color) 100%
+  );
   padding: 14px 34px;
   letter-spacing: 1px;
   margin: 0;
@@ -184,7 +205,7 @@ hr {
 .btn-custom.active {
   color: #fff;
   background-image: none;
-  background-color: #6372ff;
+  background-color: var(--main-accent-color);
 }
 .btn:active,
 .btn.active {
@@ -209,6 +230,7 @@ a:focus,
   width: 100%;
   padding: 0;
   background-color: #cccccc;
+  background: url(../img/intro-bg.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -228,7 +250,7 @@ a:focus,
 }
 .intro h1 span {
   font-weight: 800;
-  color: #5ca9fb;
+  color: var(--secondary-accent-color);
 }
 .intro p {
   color: #fff;
@@ -257,7 +279,11 @@ svg[data-prefix] {
   height: 100px;
   padding: 30px 0;
   border-radius: 50%;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  );
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -270,7 +296,11 @@ svg[data-prefix] {
   height: 100px;
   padding: 30px 0;
   border-radius: 50%;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  );
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
 /* About Section */
@@ -289,11 +319,14 @@ svg[data-prefix] {
 #about h2::after {
   position: absolute;
   content: "";
-  background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+  background: linear-gradient(
+    to right,
+    var(--secondary-accent-color) 0%,
+    var(--main-accent-color) 100%
+  );
   height: 4px;
   width: 60px;
   bottom: 0;
-  left: 0;
 }
 #about .about-text li {
   margin-bottom: 6px;
@@ -304,7 +337,7 @@ svg[data-prefix] {
 #about .about-text li:before {
   content: "\f00c";
   font-family: "FontAwesome";
-  color: #5ca9fb;
+  color: var(--secondary-accent-color);
   font-size: 11px;
   font-weight: 300;
   padding-right: 8px;
@@ -323,7 +356,11 @@ svg[data-prefix] {
 /* Services Section */
 #services {
   padding: 100px 0;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  );
   color: #fff;
 }
 #services .service-desc {
@@ -347,7 +384,11 @@ svg[data-prefix] {
   width: 120px;
   height: 120px;
   padding: 40px 0;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  );
   border-radius: 50%;
   color: #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
@@ -383,8 +424,8 @@ svg[data-prefix] {
   color: #fff;
   background: linear-gradient(
     to right,
-    rgba(99, 114, 255, 0.8) 0%,
-    rgba(92, 169, 251, 0.8) 100%
+    --main-accent-color-eighty 0%,
+    --secondary-accent-color-eighty 100%
   );
   padding: 30% 0 0;
   height: 100%;
@@ -456,8 +497,12 @@ svg[data-prefix] {
 #team {
   padding: 100px 0;
 }
-#team h4 {
+#about h4 {
   margin: 5px 0;
+  color: #777;
+}
+#about p {
+  color: #777;
 }
 #team .team-img {
   width: 240px;
@@ -473,7 +518,11 @@ svg[data-prefix] {
 /* Contact Section */
 #contact {
   padding: 100px 0 60px;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(
+    to right,
+    var(--main-accent-color) 0%,
+    var(--secondary-accent-color) 100%
+  );
   color: rgba(255, 255, 255, 0.75);
 }
 #contact .section-title {
@@ -482,7 +531,7 @@ svg[data-prefix] {
 #contact .section-title p {
   font-size: 16px;
 }
-#contact h2 {
+#contact h4 {
   color: #fff;
   margin-top: 10px;
   margin-bottom: 15px;
@@ -593,7 +642,7 @@ label {
   transition: all 0.3s;
 }
 #contact .social i.fa:hover {
-  color: #608dfd;
+  color: var(--link-color);
   background: #fff;
 }
 /* Footer Section*/
@@ -606,10 +655,10 @@ label {
   font-size: 14px;
 }
 #footer a {
-  color: #608dfd;
+  color: var(--link-color);
 }
 #footer a:hover {
-  border-bottom: 2px solid #608dfd;
+  border-bottom: 2px solid var(--link-color);
 }
 
 @media (max-width: 768px) {

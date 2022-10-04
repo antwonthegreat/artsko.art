@@ -13,7 +13,6 @@ import "./App.css";
 import { Features } from "./components/features";
 import { Services } from "./components/services";
 import { Gallery } from "./components/gallery";
-import { Testimonials } from "./components/testimonials";
 import { Team } from "./components/Team";
 import { Contact } from "./components/contact";
 import JsonData from "./data/data.json";
@@ -36,9 +35,7 @@ library.add(faImages,faPeopleArrows,faComments, faScroll,faMoneyBillWave,faUserS
 //need background image
 
 export default function BasicExample() {
-  const bgColor = new URLSearchParams(window.location.search).get("theme") === 'light' ? '#ffffff' : '#111111';
 
-  document.body.style.backgroundColor = bgColor;
   return (
     <Router>
       <div>
@@ -96,20 +93,23 @@ function Home() {
       <Team data={landingPageData.Team} />
       <Services data={landingPageData.Services} />
       <Gallery data={landingPageData.Gallery}/>
-      <Testimonials data={landingPageData.Testimonials} />
       <Contact data={landingPageData.Contact} />
     </div>
   );
 }
 
 function Pay() {
-  const stripePromise = loadStripe(
-    "pk_test_51IcbRZKWjn1TKO12haUWGetyIZSALgjkAbIUywM6gxRDYu3cpxehym5ZQxNcGTDPVOvp5Cm2MOayhOurFmjO4Bhk004uJWLWJp"
-  );
-
   const sessionId = new URLSearchParams(window.location.search).get("sessionId")
   const customerEmail = new URLSearchParams(window.location.search).get("customerEmail")
   const ship = !!(new URLSearchParams(window.location.search).get("ship"));
+  const env = new URLSearchParams(window.location.search).get("env");
+
+
+
+  const stripePromise = loadStripe(env === 'dev' ? 
+    "pk_test_51IcbRZKWjn1TKO12haUWGetyIZSALgjkAbIUywM6gxRDYu3cpxehym5ZQxNcGTDPVOvp5Cm2MOayhOurFmjO4Bhk004uJWLWJp" : "pk_live_51IcbRZKWjn1TKO12V1RG1ckTwACbvugC1jz4vyQs7ZcpQJOZWLDcqg4LVG9ZVq3rl3TtbBELffQSdI6qhcQK2zKc00SdSzcji3"
+  );
+
 
   if(sessionId){
     stripePromise.then(stripe => {
