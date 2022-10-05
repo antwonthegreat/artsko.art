@@ -48,7 +48,7 @@ function Commissions() {
     
 
       const theme = useMemo(()=>{
-        return themes['dark'];
+        return themes['light'];
       },[])
 
     useEffect(() => {
@@ -58,7 +58,7 @@ function Commissions() {
           return;
         }
         const response = await api.get(
-          `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url,IsMain),Options($select=CurrentPrice;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
+          `/Commissions?$select=Name,Description&$filter=Id eq ${commissionId}&$expand=CommissionImages($orderBy=IsMain desc,Id asc;$filter=not NSFW;$select=Height,Width,Url,IsMain),Options($select=CurrentPrice,Description,Name,DaysToDeliver;$filter=not IsArchived),Artist($select=Username,ProfileUrl),Category($select=Name)`,
         );
         const commission = response?.data?.value?.[0];
         setCommission(commission);
@@ -143,17 +143,31 @@ function Commissions() {
               display:'flex',
               flexDirection: 'row',
               alignItems: 'center',
+              flexWrap:'wrap',
               margin: 8,
               justifyContent: 'center',
             }}
           >
-            <div style={{...theme.caption}}>Available for {commission?.Options.length === 1 ? currencyFormatter.format(commission.Options[0].CurrentPrice) : `${currencyFormatter.format(commission.Options.slice(0)
-              .sort((a, b) => a.CurrentPrice - b.CurrentPrice)[0]
-              .CurrentPrice)} - ${currencyFormatter.format(commission.Options.slice(0)
-                .sort((a, b) => b.CurrentPrice - a.CurrentPrice)[0]
-                .CurrentPrice)}`}
-            </div>
-
+            {
+              commission.Options.map(o => (
+                <div style={{display:'flex',flexDirection:'column',margin:16,padding:16,alignItems:'center',borderWidth:1,borderStyle:'solid',borderColor:theme.caption, borderRadius:10}}>
+                  <div style={{margin:8,...theme.title}}>{currencyFormatter.format(o.CurrentPrice)}</div>
+                  <div style={{margin:8,...theme.title}}>{o.Name}</div>
+                  {o.Description ? <div style={{margin:8,...theme.caption}}>{o.Description}</div>:null}
+                  {o.DaysToDeliver ? <div style={{margin:8,...theme.caption}}>{o.DaysToDeliver} Delivery Days</div> : null}
+                </div>
+              ))
+            }
+            {
+              commission.Options.map(o => (
+                <div style={{display:'flex',flexDirection:'column',margin:16,padding:16,alignItems:'center',borderWidth:1,borderStyle:'solid',borderColor:theme.caption, borderRadius:10}}>
+                  <div style={{margin:8,...theme.title}}>{currencyFormatter.format(o.CurrentPrice)}</div>
+                  <div style={{margin:8,...theme.title}}>{o.Name}</div>
+                  {o.Description ? <div style={{margin:8,...theme.caption}}>{o.Description}</div>:null}
+                  {o.DaysToDeliver ? <div style={{margin:8,...theme.caption}}>{o.DaysToDeliver} Delivery Days</div> : null}
+                </div>
+              ))
+            }
           </div>
         ) : null}
 
