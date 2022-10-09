@@ -158,16 +158,6 @@ function Commissions() {
                 </div>
               ))
             }
-            {
-              commission.Options.map(o => (
-                <div style={{display:'flex',flexDirection:'column',margin:16,padding:16,alignItems:'center',borderWidth:1,borderStyle:'solid',borderColor:theme.caption, borderRadius:10}}>
-                  <div style={{margin:8,...theme.title}}>{currencyFormatter.format(o.CurrentPrice)}</div>
-                  <div style={{margin:8,...theme.title}}>{o.Name}</div>
-                  {o.Description ? <div style={{margin:8,...theme.caption}}>{o.Description}</div>:null}
-                  {o.DaysToDeliver ? <div style={{margin:8,...theme.caption}}>{o.DaysToDeliver} Delivery Days</div> : null}
-                </div>
-              ))
-            }
           </div>
         ) : null}
 
